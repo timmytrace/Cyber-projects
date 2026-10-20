@@ -1,0 +1,34 @@
+repos:
+  # Python Backend Ruff Checks
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.15.0
+    hooks:
+      - id: ruff
+        name: ruff check (backend)
+        args: [--fix, --exit-non-zero-on-fix]
+        files: ^PROJECTS/api-security-scanner/backend/
+        exclude: ^PROJECTS/api-security-scanner/backend/(\.venv|__pycache__|\.pytest_cache)/
+
+
+      # TODO: add additional ruff checks for remaining projects
+
+
+      # TODO: add golangci checks for GO projects
+
+
+      # TODO: replace eslint in any full-stack (React) projects with biome then add biome checks
+
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-yaml
+      - id: check-json
+      - id: check-toml
+      - id: check-ast
+      - id: check-symlinks
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: check-illegal-windows-names
+      - id: check-executables-have-shebangs
+      - id: check-shebang-scripts-are-executable
