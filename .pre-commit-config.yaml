@@ -1,0 +1,76 @@
+repos:
+  # Python Backend Ruff Checks
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.15.0
+    hooks:
+      - id: ruff
+        name: ruff check (backend)
+        args: [--fix, --exit-non-zero-on-fix]
+        files: ^PROJECTS/api-security-scanner/backend/
+        exclude: ^PROJECTS/api-security-scanner/backend/(\.venv|__pycache__|\.pytest_cache)/
+
+
+      # TODO: add additional ruff checks for remaining projects
+
+
+      # TODO: add golangci checks for GO projects
+
+
+  # Biome Frontend Checks
+  - repo: local
+    hooks:
+      - id: biome-bug-bounty-platform
+        name: biome check (bug-bounty-platform frontend)
+        entry: bash -c 'cd PROJECTS/advanced/bug-bounty-platform/frontend && npx @biomejs/biome check .'
+        language: system
+        files: ^PROJECTS/advanced/bug-bounty-platform/frontend/src/
+        pass_filenames: false
+
+      - id: biome-c2-beacon
+        name: biome check (c2-beacon frontend)
+        entry: bash -c 'cd PROJECTS/beginner/c2-beacon/frontend && npx @biomejs/biome check .'
+        language: system
+        files: ^PROJECTS/beginner/c2-beacon/frontend/src/
+        pass_filenames: false
+
+      - id: biome-api-security-scanner
+        name: biome check (api-security-scanner frontend)
+        entry: bash -c 'cd PROJECTS/intermediate/api-security-scanner/frontend && npx @biomejs/biome check .'
+        language: system
+        files: ^PROJECTS/intermediate/api-security-scanner/frontend/src/
+        pass_filenames: false
+
+      - id: biome-siem-dashboard
+        name: biome check (siem-dashboard frontend)
+        entry: bash -c 'cd PROJECTS/intermediate/siem-dashboard/frontend && npx @biomejs/biome check .'
+        language: system
+        files: ^PROJECTS/intermediate/siem-dashboard/frontend/src/
+        pass_filenames: false
+
+      - id: biome-encrypted-p2p-chat
+        name: biome check (encrypted-p2p-chat frontend)
+        entry: bash -c 'cd PROJECTS/advanced/encrypted-p2p-chat/frontend && npx @biomejs/biome check .'
+        language: system
+        files: ^PROJECTS/advanced/encrypted-p2p-chat/frontend/src/
+        pass_filenames: false
+
+      - id: biome-fullstack-template
+        name: biome check (fullstack-template frontend)
+        entry: bash -c 'cd TEMPLATES/fullstack-template/frontend && npx @biomejs/biome check .'
+        language: system
+        files: ^TEMPLATES/fullstack-template/frontend/src/
+        pass_filenames: false
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-yaml
+      - id: check-json
+      - id: check-toml
+      - id: check-ast
+      - id: check-symlinks
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: check-illegal-windows-names
+      - id: check-executables-have-shebangs
+      - id: check-shebang-scripts-are-executable
